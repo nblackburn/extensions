@@ -58,3 +58,5 @@ export type CategoryGroupResponse = {
     category_groups: CategoryGroup[];
   };
 };
+
+export type Plan = "default" | "last-used" | (string & {});
