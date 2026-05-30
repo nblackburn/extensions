@@ -1,5 +1,6 @@
 import { Color, List } from "@raycast/api";
 import { useMemo } from "react";
+import { getProgressIcon } from "@raycast/utils";
 import { GoalType } from "~/types";
 
 interface CategoryProps {
@@ -28,6 +29,14 @@ export const Category = ({
   goalType,
   percentageComplete,
 }: CategoryProps) => {
+  const normalizedProgress = useMemo(() => {
+    if (!percentageComplete) {
+      return 0;
+    }
+
+    return percentageComplete / 100;
+  }, [percentageComplete]);
+
   const hasGoal = useMemo(() => !!goalType, [goalType]);
 
   // https://support.ynab.com/en_us/colors-and-icons-in-your-plan-HJQv_XHko#colors
@@ -63,6 +72,9 @@ export const Category = ({
           value: availableFormatted,
         },
         tooltip: "Available",
+        icon: hasGoal
+          ? getProgressIcon(normalizedProgress, availableTagColor)
+          : undefined,
       },
     ];
   }, [
