@@ -1,4 +1,4 @@
-import { List } from "@raycast/api";
+import { Color, List } from "@raycast/api";
 import { useMemo } from "react";
 import { GoalType } from "~/types";
 
@@ -30,6 +30,23 @@ export const Category = ({
 }: CategoryProps) => {
   const hasGoal = useMemo(() => !!goalType, [goalType]);
 
+  // https://support.ynab.com/en_us/colors-and-icons-in-your-plan-HJQv_XHko#colors
+  const availableTagColor = useMemo(() => {
+    if (assigned === undefined || activity === undefined) {
+      return;
+    }
+
+    if (assigned + activity > 0) {
+      return Color.Green;
+    }
+
+    if (assigned + activity < 0) {
+      return Color.Red;
+    }
+
+    return Color.PrimaryText;
+  }, [goalType, assigned, activity]);
+
   const accessories = useMemo(() => {
     return [
       {
@@ -42,12 +59,19 @@ export const Category = ({
       },
       {
         tag: {
+          color: availableTagColor,
           value: availableFormatted,
         },
         tooltip: "Available",
       },
     ];
-  }, [assignedFormatted, activityFormatted, availableFormatted, hasGoal]);
+  }, [
+    assignedFormatted,
+    activityFormatted,
+    availableFormatted,
+    hasGoal,
+    availableTagColor,
+  ]);
 
   return <List.Item id={id} title={title} accessories={accessories} />;
 };
