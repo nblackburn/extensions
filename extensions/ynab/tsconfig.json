@@ -6,11 +6,15 @@
     "module": "commonjs",
     "target": "ES2023",
     "strict": true,
+    "baseUrl": ".",
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "paths": {
+      "~/*": ["src/*"],
+    },
+  },
 }
