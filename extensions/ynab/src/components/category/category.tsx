@@ -56,6 +56,14 @@ export const Category = ({
     return Color.PrimaryText;
   }, [goalType, assigned, activity]);
 
+  const availableTooltip = useMemo(() => {
+    if (percentageComplete) {
+      return `Available (${percentageComplete}% of target)`;
+    }
+
+    return "Available";
+  }, [percentageComplete]);
+
   const accessories = useMemo(() => {
     return [
       {
@@ -71,7 +79,7 @@ export const Category = ({
           color: availableTagColor,
           value: availableFormatted,
         },
-        tooltip: "Available",
+        tooltip: availableTooltip,
         icon: hasGoal
           ? getProgressIcon(normalizedProgress, availableTagColor)
           : undefined,
@@ -83,6 +91,7 @@ export const Category = ({
     availableFormatted,
     hasGoal,
     availableTagColor,
+    availableTooltip,
   ]);
 
   return <List.Item id={id} title={title} accessories={accessories} />;
