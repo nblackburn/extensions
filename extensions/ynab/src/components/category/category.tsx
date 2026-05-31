@@ -37,7 +37,10 @@ export const Category = ({
     return percentageComplete / 100;
   }, [percentageComplete]);
 
-  const hasGoal = useMemo(() => !!goalType, [goalType]);
+  const hasGoal = useMemo(
+    () => percentageComplete !== null && percentageComplete !== undefined,
+    [percentageComplete],
+  );
 
   // https://support.ynab.com/en_us/colors-and-icons-in-your-plan-HJQv_XHko#colors
   const availableTagColor = useMemo(() => {
