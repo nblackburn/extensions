@@ -44,7 +44,11 @@ export const Category = ({
 
   // https://support.ynab.com/en_us/colors-and-icons-in-your-plan-HJQv_XHko#colors
   const availableTagColor = useMemo(() => {
-    if (assigned === undefined || activity === undefined) {
+    if (
+      assigned === undefined ||
+      activity === undefined ||
+      available === undefined
+    ) {
       return;
     }
 
@@ -56,6 +60,9 @@ export const Category = ({
       return Color.Red;
     }
 
+    if (available + assigned < 0) {
+      return Color.Yellow;
+    }
     return Color.PrimaryText;
   }, [goalType, assigned, activity]);
 
