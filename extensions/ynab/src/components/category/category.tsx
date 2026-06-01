@@ -52,10 +52,6 @@ export const Category = ({
       return;
     }
 
-    if (assigned + activity > 0) {
-      return Color.Green;
-    }
-
     if (assigned + activity < 0) {
       return Color.Red;
     }
@@ -63,6 +59,11 @@ export const Category = ({
     if (available + assigned < 0) {
       return Color.Yellow;
     }
+
+    if (assigned + activity > 0) {
+      return Color.Green;
+    }
+
     return Color.PrimaryText;
   }, [goalType, assigned, activity]);
 
