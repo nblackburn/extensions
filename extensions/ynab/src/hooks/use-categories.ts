@@ -13,7 +13,7 @@ export const useCategories = (plan: PlanOptions = "default") => {
         (categoryGroup) =>
           !categoryGroup.hidden &&
           !categoryGroup.deleted &&
-          !categoryGroup.internal,
+          !categoryGroup.name.includes("Internal"),
       ) ?? []
     );
   }, [data]);
