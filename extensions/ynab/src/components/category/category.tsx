@@ -1,4 +1,4 @@
-import { Color, List } from "@raycast/api";
+import { Color, Icon, List } from "@raycast/api";
 import { useMemo } from "react";
 import { getProgressIcon } from "@raycast/utils";
 import { GoalType } from "~/types";
@@ -67,6 +67,18 @@ export const Category = ({
     return "Available";
   }, [percentageComplete]);
 
+  const availableIcon = useMemo(() => {
+    if (!hasGoal) {
+      return null;
+    }
+
+    if (normalizedProgress === 1) {
+      return Icon.CheckCircle;
+    }
+
+    return getProgressIcon(normalizedProgress, availableTagColor);
+  }, [normalizedProgress]);
+
   const accessories = useMemo(() => {
     return [
       {
@@ -83,9 +95,7 @@ export const Category = ({
           value: availableFormatted,
         },
         tooltip: availableTooltip,
-        icon: hasGoal
-          ? getProgressIcon(normalizedProgress, availableTagColor)
-          : undefined,
+        icon: availableIcon,
       },
     ];
   }, [
