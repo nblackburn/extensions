@@ -53,7 +53,7 @@ export type CategoryGroup = {
   categories: Category[];
 };
 
-export type CategoryGroupResponse = {
+export type CategoriesResponse = {
   data: {
     category_groups: CategoryGroup[];
   };

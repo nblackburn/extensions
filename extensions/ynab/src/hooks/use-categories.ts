@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { useApi } from "./use-api";
-import { CategoryGroupResponse, PlanOptions } from "~/types";
+import { CategoriesResponse, PlanOptions } from "~/types";
 
 export const useCategories = (plan: PlanOptions = "default") => {
-  const { isLoading, data } = useApi<CategoryGroupResponse>(
+  const { isLoading, data } = useApi<CategoriesResponse>(
     `plans/${plan}/categories`,
   );
 
