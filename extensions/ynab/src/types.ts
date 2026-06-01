@@ -59,4 +59,4 @@ export type CategoryGroupResponse = {
   };
 };
 
-export type Plan = "default" | "last-used" | (string & {});
+export type PlanOptions = "default" | "last-used" | (string & {});
