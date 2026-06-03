@@ -68,11 +68,17 @@ export const Category = ({
   }, [goalType, assigned, activity]);
 
   const availableTooltip = useMemo(() => {
-    if (percentageComplete) {
-      return `Available (${percentageComplete}% of target)`;
+    let text = "Available";
+
+    if (percentageComplete && percentageComplete === 100) {
+      text += ` (Target met)`;
     }
 
-    return "Available";
+    if (percentageComplete && percentageComplete < 100) {
+      text += ` (${percentageComplete}% of target)`;
+    }
+
+    return text;
   }, [percentageComplete]);
 
   const availableIcon = useMemo(() => {
