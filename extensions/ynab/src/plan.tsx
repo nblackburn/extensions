@@ -1,13 +1,19 @@
+import { useState } from "react";
 import { List } from "@raycast/api";
 import { withYNABAuth } from "~/oauth/ynab";
 import { useCategories } from "./hooks/use-categories";
+import { PlanDropdown } from "./components/plan/dropdown";
 import { Category, CategoryGroup } from "~/components/category";
 
 const Command = () => {
-  const { isLoading, categoryGroups } = useCategories();
+  const [selectedPlan, setSelectedPlan] = useState("default");
+  const { isLoading, categoryGroups } = useCategories(selectedPlan);
 
   return (
-    <List isLoading={isLoading}>
+    <List
+      isLoading={isLoading}
+      searchBarAccessory={<PlanDropdown onSelect={setSelectedPlan} />}
+    >
       {categoryGroups.map((categoryGroup) => (
         <CategoryGroup
           key={categoryGroup.id}
