@@ -1,5 +1,4 @@
 import { List } from "@raycast/api";
-import { useMemo } from "react";
 
 interface CategoryDetailProps {
   title: string;
@@ -20,21 +19,13 @@ export const CategoryDetail = ({
   availableIcon,
   availableTagColor,
 }: CategoryDetailProps) => {
-  const markdown = useMemo(() => {
-    const parts = [`## ${title}`];
-
-    if (note) {
-      parts.push(note);
-    }
-
-    return parts.join("\r\n");
-  }, [title, note]);
-
   return (
     <List.Item.Detail
-      markdown={markdown}
       metadata={
         <List.Item.Detail.Metadata>
+          <List.Item.Detail.Metadata.Label title="Name" text={title} />
+          {note && <List.Item.Detail.Metadata.Label title="Note" text={note} />}
+          <List.Item.Detail.Metadata.Separator />
           <List.Item.Detail.Metadata.Label
             title="Assigned"
             text={assignedFormatted}
