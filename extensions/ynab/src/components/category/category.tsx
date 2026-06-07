@@ -44,6 +44,8 @@ export const Category = ({
     [percentageComplete],
   );
 
+  const hasOverspent = useMemo(() => available && available < 0, [available]);
+
   // https://support.ynab.com/en_us/colors-and-icons-in-your-plan-HJQv_XHko#colors
   const availableTagColor = useMemo(() => {
     if (
@@ -54,7 +56,7 @@ export const Category = ({
       return;
     }
 
-    if (available < 0) {
+    if (hasOverspent) {
       return Color.Red;
     }
 
@@ -67,13 +69,17 @@ export const Category = ({
     }
 
     return Color.PrimaryText;
-  }, [goalType, assigned, activity]);
+  }, [goalType, assigned, activity, hasOverspent]);
 
   const availableTooltip = useMemo(() => {
     const text = "Available";
 
     if (snoozedAt) {
       return `${text} (Snoozed)`;
+    }
+
+    if (hasOverspent) {
+      return `${text} (Overspent)`;
     }
 
     if (percentageComplete && percentageComplete === 100) {
@@ -85,7 +91,7 @@ export const Category = ({
     }
 
     return text;
-  }, [percentageComplete]);
+  }, [percentageComplete, available, hasOverspent]);
 
   const availableIcon = useMemo(() => {
     if (!hasGoal) {
