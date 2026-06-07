@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { List } from "@raycast/api";
 import { withYNABAuth } from "~/oauth/ynab";
 import { useCategories } from "./hooks/use-categories";
@@ -8,11 +8,30 @@ import { Category, CategoryGroup } from "~/components/category";
 const Command = () => {
   const [selectedPlan, setSelectedPlan] = useState("default");
   const { isLoading, categoryGroups } = useCategories(selectedPlan);
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
+    undefined,
+  );
+
+  const isShowingDetail = useMemo(() => !!selectedCategory, [selectedCategory]);
+
+  const handleSelect = useCallback(
+    (categoryId: string) => {
+      if (categoryId === selectedCategory) {
+        setSelectedCategory(undefined);
+
+        return;
+      }
+
+      setSelectedCategory(categoryId);
+    },
+    [selectedCategory],
+  );
 
   return (
     <List
       isLoading={isLoading}
       searchBarAccessory={<PlanDropdown onSelect={setSelectedPlan} />}
+      isShowingDetail={isShowingDetail}
     >
       {categoryGroups.map((categoryGroup) => (
         <CategoryGroup
@@ -36,6 +55,8 @@ const Command = () => {
               snoozedAt={category.goal_snoozed_at}
               underfunded={category.goal_under_funded}
               underfundedFormatted={category.goal_under_funded_formatted}
+              onSelect={() => handleSelect(category.id)}
+              isShowingDetail={isShowingDetail}
             />
           ))}
         </CategoryGroup>

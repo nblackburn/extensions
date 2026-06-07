@@ -19,6 +19,8 @@ interface CategoryProps {
   snoozedAt?: string | null;
   underfunded?: number | null;
   underfundedFormatted?: string | null;
+  onSelect?: () => void;
+  isShowingDetail?: boolean;
 }
 
 export const Category = ({
@@ -35,6 +37,8 @@ export const Category = ({
   snoozedAt,
   underfunded,
   underfundedFormatted,
+  onSelect,
+  isShowingDetail,
 }: CategoryProps) => {
   const normalizedProgress = useMemo(() => {
     if (!percentageComplete) {
@@ -128,6 +132,10 @@ export const Category = ({
   }, [normalizedProgress]);
 
   const accessories = useMemo(() => {
+    if (isShowingDetail) {
+      return [];
+    }
+
     return [
       {
         text: assignedFormatted,
@@ -153,6 +161,7 @@ export const Category = ({
     hasGoal,
     availableTagColor,
     availableTooltip,
+    isShowingDetail,
   ]);
 
   return (
@@ -160,7 +169,7 @@ export const Category = ({
       id={id}
       title={title}
       accessories={accessories}
-      actions={<CategoryActions id={id} title={title} />}
+      actions={<CategoryActions id={id} title={title} onSelect={onSelect} />}
     />
   );
 };
