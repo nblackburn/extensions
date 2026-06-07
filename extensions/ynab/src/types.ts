@@ -92,3 +92,67 @@ export type PlansResponse = {
     default_plan: Plan;
   };
 };
+
+export type ScheduledSubTransaction = {
+  id: string;
+  scheduled_transaction_id: string;
+  amount: number;
+  memo?: string | null;
+  payee_id?: string | null;
+  payee_name?: string | null;
+  category_id?: string | null;
+  category_name?: string | null;
+  transfer_account_id?: string | null;
+  deleted: boolean;
+  amount_formatted?: string;
+  amount_currency?: number;
+};
+
+export type ScheduledTransaction = {
+  id: string;
+  date_first: string;
+  date_next: string;
+  frequency:
+    | "never"
+    | "daily"
+    | "weekly"
+    | "everyOtherWeek"
+    | "twiceAMonth"
+    | "every4Weeks"
+    | "monthly"
+    | "everyOtherMonth"
+    | "every3Months"
+    | "every4Months"
+    | "twiceAYear"
+    | "yearly"
+    | "everyOtherYear";
+  amount: number;
+  memo?: string | null;
+  flag_color?:
+    | "red"
+    | "orange"
+    | "yellow"
+    | "green"
+    | "blue"
+    | "purple"
+    | ""
+    | null;
+  flag_name?: string | null;
+  account_id: string;
+  payee_id?: string | null;
+  category_id?: string | null;
+  transfer_account_id?: string | null;
+  deleted: boolean;
+  amount_formatted?: string;
+  amount_currency?: number;
+  account_name: string;
+  payee_name?: string | null;
+  category_name?: string | null;
+  subtransactions: ScheduledSubTransaction[];
+};
+
+export type ScheduledTransactionsResponse = {
+  data: {
+    scheduled_transactions: ScheduledTransaction[];
+  };
+};
