@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Color, Icon, List } from "@raycast/api";
+import { Color, Icon, List } from "@raycast/api";
 import { useMemo } from "react";
 import { getProgressIcon } from "@raycast/utils";
 import { GoalType } from "~/types";
