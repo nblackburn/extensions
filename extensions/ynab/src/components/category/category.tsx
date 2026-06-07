@@ -120,7 +120,11 @@ export const Category = ({
       return Icon.CheckCircle;
     }
 
-    return getProgressIcon(normalizedProgress, availableTagColor);
+    if (normalizedProgress > 0 && normalizedProgress < 1) {
+      return getProgressIcon(normalizedProgress, availableTagColor);
+    }
+
+    return null;
   }, [normalizedProgress]);
 
   const accessories = useMemo(() => {
