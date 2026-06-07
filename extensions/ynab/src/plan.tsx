@@ -33,6 +33,7 @@ const Command = () => {
               available={category.balance}
               availableFormatted={category.balance_formatted}
               percentageComplete={category.goal_percentage_complete}
+              snoozedAt={category.goal_snoozed_at}
             />
           ))}
         </CategoryGroup>

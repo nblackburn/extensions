@@ -15,6 +15,7 @@ interface CategoryProps {
   availableFormatted?: string;
   goalType?: GoalType;
   percentageComplete?: number | null;
+  snoozedAt?: string | null;
 }
 
 export const Category = ({
@@ -28,6 +29,7 @@ export const Category = ({
   availableFormatted,
   goalType,
   percentageComplete,
+  snoozedAt,
 }: CategoryProps) => {
   const normalizedProgress = useMemo(() => {
     if (!percentageComplete) {
@@ -70,6 +72,10 @@ export const Category = ({
   const availableTooltip = useMemo(() => {
     const text = "Available";
 
+    if (snoozedAt) {
+      return `${text} (Snoozed)`;
+    }
+
     if (percentageComplete && percentageComplete === 100) {
       return `${text} (Target met)`;
     }
@@ -84,6 +90,10 @@ export const Category = ({
   const availableIcon = useMemo(() => {
     if (!hasGoal) {
       return null;
+    }
+
+    if (snoozedAt) {
+      return Icon.Moon;
     }
 
     if (normalizedProgress === 1) {
