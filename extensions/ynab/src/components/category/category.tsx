@@ -68,14 +68,14 @@ export const Category = ({
   }, [goalType, assigned, activity]);
 
   const availableTooltip = useMemo(() => {
-    let text = "Available";
+    const text = "Available";
 
     if (percentageComplete && percentageComplete === 100) {
-      text += ` (Target met)`;
+      return `${text} (Target met)`;
     }
 
     if (percentageComplete && percentageComplete < 100) {
-      text += ` (${percentageComplete}% of target)`;
+      return `${text} (${percentageComplete}% of target)`;
     }
 
     return text;
