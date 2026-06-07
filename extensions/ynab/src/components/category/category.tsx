@@ -17,6 +17,8 @@ interface CategoryProps {
   goalType?: GoalType;
   percentageComplete?: number | null;
   snoozedAt?: string | null;
+  underfunded?: number | null;
+  underfundedFormatted?: string | null;
 }
 
 export const Category = ({
@@ -31,6 +33,8 @@ export const Category = ({
   goalType,
   percentageComplete,
   snoozedAt,
+  underfunded,
+  underfundedFormatted,
 }: CategoryProps) => {
   const normalizedProgress = useMemo(() => {
     if (!percentageComplete) {
@@ -47,6 +51,11 @@ export const Category = ({
 
   const hasOverspent = useMemo(() => available && available < 0, [available]);
 
+  const isUnderfunded = useMemo(
+    () => underfunded && underfunded > 0,
+    [underfunded],
+  );
+
   // https://support.ynab.com/en_us/colors-and-icons-in-your-plan-HJQv_XHko#colors
   const availableTagColor = useMemo(() => {
     if (
@@ -61,7 +70,7 @@ export const Category = ({
       return Color.Red;
     }
 
-    if (available + assigned < 0) {
+    if (isUnderfunded) {
       return Color.Yellow;
     }
 
@@ -70,7 +79,7 @@ export const Category = ({
     }
 
     return Color.PrimaryText;
-  }, [goalType, assigned, activity, hasOverspent]);
+  }, [goalType, assigned, activity, hasOverspent, isUnderfunded]);
 
   const availableTooltip = useMemo(() => {
     const text = "Available";
@@ -83,6 +92,10 @@ export const Category = ({
       return `${text} (Overspent)`;
     }
 
+    if (isUnderfunded) {
+      return `${text} (Underfunded)`;
+    }
+
     if (percentageComplete && percentageComplete === 100) {
       return `${text} (Target met)`;
     }
@@ -92,7 +105,7 @@ export const Category = ({
     }
 
     return text;
-  }, [percentageComplete, available, hasOverspent]);
+  }, [percentageComplete, available, hasOverspent, isUnderfunded]);
 
   const availableIcon = useMemo(() => {
     if (!hasGoal) {
