@@ -54,7 +54,7 @@ export const Category = ({
       return;
     }
 
-    if (assigned + activity < 0) {
+    if (available < 0) {
       return Color.Red;
     }
 
