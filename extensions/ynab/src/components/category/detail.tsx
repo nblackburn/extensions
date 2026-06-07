@@ -17,9 +17,15 @@ export const CategoryDetail = ({
   availableIcon,
   availableTagColor,
 }: CategoryDetailProps) => {
+  const markdown = useMemo(() => {
+    const parts = [`## ${title}`];
+
+    return parts.join("\r\n");
+  }, [title, note]);
+
   return (
     <List.Item.Detail
-      markdown={title}
+      markdown={markdown}
       metadata={
         <List.Item.Detail.Metadata>
           <List.Item.Detail.Metadata.Label
