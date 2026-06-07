@@ -1,7 +1,8 @@
-import { Color, Icon, List } from "@raycast/api";
+import { Action, ActionPanel, Color, Icon, List } from "@raycast/api";
 import { useMemo } from "react";
 import { getProgressIcon } from "@raycast/utils";
 import { GoalType } from "~/types";
+import { CategoryActions } from "./actions";
 
 interface CategoryProps {
   id: string;
@@ -137,5 +138,12 @@ export const Category = ({
     availableTooltip,
   ]);
 
-  return <List.Item id={id} title={title} accessories={accessories} />;
+  return (
+    <List.Item
+      id={id}
+      title={title}
+      accessories={accessories}
+      actions={<CategoryActions id={id} title={title} />}
+    />
+  );
 };
