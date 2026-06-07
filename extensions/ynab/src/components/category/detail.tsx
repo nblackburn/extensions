@@ -1,7 +1,9 @@
 import { List } from "@raycast/api";
+import { useMemo } from "react";
 
 interface CategoryDetailProps {
   title: string;
+  note?: string;
   assignedFormatted?: string;
   activityFormatted?: string;
   availableFormatted?: string;
@@ -11,6 +13,7 @@ interface CategoryDetailProps {
 
 export const CategoryDetail = ({
   title,
+  note,
   assignedFormatted,
   activityFormatted,
   availableFormatted,
@@ -19,6 +22,10 @@ export const CategoryDetail = ({
 }: CategoryDetailProps) => {
   const markdown = useMemo(() => {
     const parts = [`## ${title}`];
+
+    if (note) {
+      parts.push(note);
+    }
 
     return parts.join("\r\n");
   }, [title, note]);

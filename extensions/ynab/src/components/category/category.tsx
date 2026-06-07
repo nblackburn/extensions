@@ -8,6 +8,7 @@ import { CategoryDetail } from "./detail";
 interface CategoryProps {
   id: string;
   title: string;
+  note?: string;
   funded?: boolean;
   assigned?: number;
   assignedFormatted?: string;
@@ -27,6 +28,7 @@ interface CategoryProps {
 export const Category = ({
   id,
   title,
+  note,
   assigned,
   assignedFormatted,
   activity,
@@ -172,6 +174,7 @@ export const Category = ({
       detail={
         <CategoryDetail
           title={title}
+          note={note}
           assignedFormatted={assignedFormatted}
           activityFormatted={activityFormatted}
           availableFormatted={availableFormatted}

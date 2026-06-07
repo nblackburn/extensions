@@ -44,6 +44,7 @@ const Command = () => {
               id={category.id}
               key={category.id}
               title={category.name}
+              note={category.note}
               goalType={category.goal_type}
               assigned={category.budgeted}
               assignedFormatted={category.budgeted_formatted}
