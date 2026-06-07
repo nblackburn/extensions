@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { getProgressIcon } from "@raycast/utils";
 import { GoalType } from "~/types";
 import { CategoryActions } from "./actions";
+import { CategoryDetail } from "./detail";
 
 interface CategoryProps {
   id: string;
@@ -168,6 +169,16 @@ export const Category = ({
     <List.Item
       id={id}
       title={title}
+      detail={
+        <CategoryDetail
+          title={title}
+          assignedFormatted={assignedFormatted}
+          activityFormatted={activityFormatted}
+          availableFormatted={availableFormatted}
+          availableIcon={availableIcon}
+          availableTagColor={availableTagColor}
+        />
+      }
       accessories={accessories}
       actions={<CategoryActions id={id} title={title} onSelect={onSelect} />}
     />
