@@ -86,7 +86,7 @@ export const Category = ({
     }
 
     return Color.PrimaryText;
-  }, [goalType, assigned, activity, hasOverspent, isUnderfunded]);
+  }, [assigned, activity, hasOverspent, isUnderfunded]);
 
   const availableTooltip = useMemo(() => {
     const text = "Available";
