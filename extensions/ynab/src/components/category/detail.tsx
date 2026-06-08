@@ -2,7 +2,7 @@ import { List } from "@raycast/api";
 
 interface CategoryDetailProps {
   title: string;
-  note?: string;
+  note?: string | null;
   assignedFormatted?: string;
   activityFormatted?: string;
   availableFormatted?: string;

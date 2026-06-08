@@ -8,7 +8,7 @@ import { CategoryDetail } from "./detail";
 interface CategoryProps {
   id: string;
   title: string;
-  note?: string;
+  note?: string | null;
   funded?: boolean;
   assigned?: number;
   assignedFormatted?: string;
