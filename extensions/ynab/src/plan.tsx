@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { List } from "@raycast/api";
 import { withYNABAuth } from "~/oauth/ynab";
 import { useCategories } from "./hooks/use-categories";
@@ -7,28 +7,12 @@ import { Category, CategoryGroup } from "~/components/category";
 
 const Command = () => {
     const [selectedPlan, setSelectedPlan] = useState("default");
+    const [isShowingDetail, setIsShowingDetail] = useState(false);
     const { isLoading, categoryGroups } = useCategories(selectedPlan);
-    const [selectedCategory, setSelectedCategory] = useState<
-        string | undefined
-    >(undefined);
 
-    const isShowingDetail = useMemo(
-        () => !!selectedCategory,
-        [selectedCategory],
-    );
-
-    const handleSelect = useCallback(
-        (categoryId: string) => {
-            if (categoryId === selectedCategory) {
-                setSelectedCategory(undefined);
-
-                return;
-            }
-
-            setSelectedCategory(categoryId);
-        },
-        [selectedCategory],
-    );
+    const handleSelect = useCallback(() => {
+        setIsShowingDetail(!isShowingDetail);
+    }, [isShowingDetail]);
 
     return (
         <List
