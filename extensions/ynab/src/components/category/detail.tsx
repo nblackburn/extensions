@@ -1,4 +1,6 @@
 import { List } from "@raycast/api";
+import { CategoryDetailGoal } from "./detail/goal";
+import { GoalType } from "~/types";
 
 interface CategoryDetailProps {
   title: string;
@@ -8,6 +10,11 @@ interface CategoryDetailProps {
   availableFormatted?: string;
   availableIcon?: string | null;
   availableTagColor?: string | null;
+  goalType?: GoalType;
+  percentageComplete?: number | null;
+  targetFormatted?: string | null;
+  overallFormatted?: string | null;
+  targetDate?: string | null;
 }
 
 export const CategoryDetail = ({
@@ -18,6 +25,11 @@ export const CategoryDetail = ({
   availableFormatted,
   availableIcon,
   availableTagColor,
+  goalType,
+  percentageComplete,
+  targetFormatted,
+  overallFormatted,
+  targetDate,
 }: CategoryDetailProps) => {
   return (
     <List.Item.Detail
@@ -41,6 +53,14 @@ export const CategoryDetail = ({
               text={availableFormatted}
             />
           </List.Item.Detail.Metadata.TagList>
+          <List.Item.Detail.Metadata.Separator />
+          <CategoryDetailGoal
+            type={goalType}
+            targetFormatted={targetFormatted}
+            overallFormatted={overallFormatted}
+            targetDate={targetDate}
+            percentageComplete={percentageComplete}
+          />
         </List.Item.Detail.Metadata>
       }
     />

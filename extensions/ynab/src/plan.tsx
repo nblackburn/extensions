@@ -58,6 +58,9 @@ const Command = () => {
               underfundedFormatted={category.goal_under_funded_formatted}
               onSelect={() => handleSelect(category.id)}
               isShowingDetail={isShowingDetail}
+              targetFormatted={category.goal_target_formatted}
+              overallFormatted={category.goal_overall_funded_formatted}
+              targetDate={category.goal_target_date}
             />
           ))}
         </CategoryGroup>

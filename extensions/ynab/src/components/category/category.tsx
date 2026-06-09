@@ -23,6 +23,9 @@ interface CategoryProps {
   underfundedFormatted?: string | null;
   onSelect?: () => void;
   isShowingDetail?: boolean;
+  targetFormatted?: string | null;
+  overallFormatted?: string | null;
+  targetDate?: string | null;
 }
 
 export const Category = ({
@@ -42,6 +45,9 @@ export const Category = ({
   underfundedFormatted,
   onSelect,
   isShowingDetail,
+  targetFormatted,
+  overallFormatted,
+  targetDate,
 }: CategoryProps) => {
   const normalizedProgress = useMemo(() => {
     if (!percentageComplete) {
@@ -180,6 +186,11 @@ export const Category = ({
           availableFormatted={availableFormatted}
           availableIcon={availableIcon}
           availableTagColor={availableTagColor}
+          goalType={goalType}
+          percentageComplete={percentageComplete}
+          overallFormatted={overallFormatted}
+          targetFormatted={targetFormatted}
+          targetDate={targetDate}
         />
       }
       accessories={accessories}
