@@ -194,7 +194,12 @@ export const Category = ({
             }
             accessories={accessories}
             actions={
-                <CategoryActions id={id} title={title} onSelect={onSelect} />
+                <CategoryActions
+                    id={id}
+                    title={title}
+                    onSelect={onSelect}
+                    isShowingDetail={isShowingDetail}
+                />
             }
         />
     );

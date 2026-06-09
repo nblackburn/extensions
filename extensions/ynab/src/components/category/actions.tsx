@@ -1,16 +1,29 @@
 import { Action, ActionPanel, Icon } from "@raycast/api";
+import { useMemo } from "react";
 
 interface CategoryActionsProps {
     id: string;
     title: string;
     onSelect?: () => void;
+    isShowingDetail?: boolean;
 }
 
-export const CategoryActions = ({ title, onSelect }: CategoryActionsProps) => {
+export const CategoryActions = ({
+    title,
+    onSelect,
+    isShowingDetail,
+}: CategoryActionsProps) => {
+    const showDetailLabel = useMemo(
+        () => {
+            return isShowingDetail ? "Hide Details" : "Show Details"
+        },
+        [isShowingDetail],
+    );
+
     return (
         <ActionPanel title={title}>
             <Action
-                title="Show Details"
+                title={showDetailLabel}
                 icon={Icon.Sidebar}
                 onAction={onSelect}
             />
