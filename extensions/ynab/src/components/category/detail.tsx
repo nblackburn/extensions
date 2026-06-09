@@ -1,6 +1,7 @@
 import { List } from "@raycast/api";
 import { CategoryDetailGoal } from "./detail/goal";
 import { GoalType } from "~/types";
+import { Fragment, useMemo } from "react";
 
 interface CategoryDetailProps {
     title: string;
@@ -31,6 +32,8 @@ export const CategoryDetail = ({
     overallFormatted,
     targetDate,
 }: CategoryDetailProps) => {
+    const hasGoal = useMemo(() => !!goalType, [goalType]);
+
     return (
         <List.Item.Detail
             metadata={
@@ -61,14 +64,18 @@ export const CategoryDetail = ({
                             text={availableFormatted}
                         />
                     </List.Item.Detail.Metadata.TagList>
-                    <List.Item.Detail.Metadata.Separator />
-                    <CategoryDetailGoal
-                        type={goalType}
-                        targetFormatted={targetFormatted}
-                        overallFormatted={overallFormatted}
-                        targetDate={targetDate}
-                        percentageComplete={percentageComplete}
-                    />
+                    {hasGoal && (
+                        <Fragment>
+                            <List.Item.Detail.Metadata.Separator />
+                            <CategoryDetailGoal
+                                type={goalType}
+                                targetFormatted={targetFormatted}
+                                overallFormatted={overallFormatted}
+                                targetDate={targetDate}
+                                percentageComplete={percentageComplete}
+                            />
+                        </Fragment>
+                    )}
                 </List.Item.Detail.Metadata>
             }
         />
