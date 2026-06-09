@@ -6,67 +6,76 @@ import { PlanDropdown } from "./components/plan/dropdown";
 import { Category, CategoryGroup } from "~/components/category";
 
 const Command = () => {
-  const [selectedPlan, setSelectedPlan] = useState("default");
-  const { isLoading, categoryGroups } = useCategories(selectedPlan);
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
-    undefined,
-  );
+    const [selectedPlan, setSelectedPlan] = useState("default");
+    const { isLoading, categoryGroups } = useCategories(selectedPlan);
+    const [selectedCategory, setSelectedCategory] = useState<
+        string | undefined
+    >(undefined);
 
-  const isShowingDetail = useMemo(() => !!selectedCategory, [selectedCategory]);
+    const isShowingDetail = useMemo(
+        () => !!selectedCategory,
+        [selectedCategory],
+    );
 
-  const handleSelect = useCallback(
-    (categoryId: string) => {
-      if (categoryId === selectedCategory) {
-        setSelectedCategory(undefined);
+    const handleSelect = useCallback(
+        (categoryId: string) => {
+            if (categoryId === selectedCategory) {
+                setSelectedCategory(undefined);
 
-        return;
-      }
+                return;
+            }
 
-      setSelectedCategory(categoryId);
-    },
-    [selectedCategory],
-  );
+            setSelectedCategory(categoryId);
+        },
+        [selectedCategory],
+    );
 
-  return (
-    <List
-      isLoading={isLoading}
-      searchBarAccessory={<PlanDropdown onSelect={setSelectedPlan} />}
-      isShowingDetail={isShowingDetail}
-    >
-      {categoryGroups.map((categoryGroup) => (
-        <CategoryGroup
-          key={categoryGroup.id}
-          id={categoryGroup.id}
-          title={categoryGroup.name}
+    return (
+        <List
+            isLoading={isLoading}
+            searchBarAccessory={<PlanDropdown onSelect={setSelectedPlan} />}
+            isShowingDetail={isShowingDetail}
         >
-          {categoryGroup.categories.map((category) => (
-            <Category
-              id={category.id}
-              key={category.id}
-              title={category.name}
-              note={category.note}
-              goalType={category.goal_type}
-              assigned={category.budgeted}
-              assignedFormatted={category.budgeted_formatted}
-              activity={category.activity}
-              activityFormatted={category.activity_formatted}
-              available={category.balance}
-              availableFormatted={category.balance_formatted}
-              percentageComplete={category.goal_percentage_complete}
-              snoozedAt={category.goal_snoozed_at}
-              underfunded={category.goal_under_funded}
-              underfundedFormatted={category.goal_under_funded_formatted}
-              onSelect={() => handleSelect(category.id)}
-              isShowingDetail={isShowingDetail}
-              targetFormatted={category.goal_target_formatted}
-              overallFormatted={category.goal_overall_funded_formatted}
-              targetDate={category.goal_target_date}
-            />
-          ))}
-        </CategoryGroup>
-      ))}
-    </List>
-  );
+            {categoryGroups.map((categoryGroup) => (
+                <CategoryGroup
+                    key={categoryGroup.id}
+                    id={categoryGroup.id}
+                    title={categoryGroup.name}
+                >
+                    {categoryGroup.categories.map((category) => (
+                        <Category
+                            id={category.id}
+                            key={category.id}
+                            title={category.name}
+                            note={category.note}
+                            goalType={category.goal_type}
+                            assigned={category.budgeted}
+                            assignedFormatted={category.budgeted_formatted}
+                            activity={category.activity}
+                            activityFormatted={category.activity_formatted}
+                            available={category.balance}
+                            availableFormatted={category.balance_formatted}
+                            percentageComplete={
+                                category.goal_percentage_complete
+                            }
+                            snoozedAt={category.goal_snoozed_at}
+                            underfunded={category.goal_under_funded}
+                            underfundedFormatted={
+                                category.goal_under_funded_formatted
+                            }
+                            onSelect={() => handleSelect(category.id)}
+                            isShowingDetail={isShowingDetail}
+                            targetFormatted={category.goal_target_formatted}
+                            overallFormatted={
+                                category.goal_overall_funded_formatted
+                            }
+                            targetDate={category.goal_target_date}
+                        />
+                    ))}
+                </CategoryGroup>
+            ))}
+        </List>
+    );
 };
 
 export default withYNABAuth(Command);
