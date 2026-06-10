@@ -28,7 +28,7 @@ interface CategoryDetailGoalProps extends CategoryDetailGoalNeedProps {
 export const CategoryGoalNeed = ({
     targetDate,
     targetFormatted,
-    assignedFormatted,
+    balanceFormatted,
     percentageComplete,
 }: CategoryDetailGoalNeedProps) => {
     const normalizedProgress = useMemo(() => {
@@ -59,10 +59,10 @@ export const CategoryGoalNeed = ({
                     text={`Have a Balance of ${targetFormatted}`}
                 />
             )}
-            {assignedFormatted && targetFormatted && (
+            {balanceFormatted && targetFormatted && (
                 <List.Item.Detail.Metadata.Label
                     title="Balance"
-                    text={`${assignedFormatted} of ${targetFormatted}`}
+                    text={`${balanceFormatted} of ${targetFormatted}`}
                     icon={getProgressIcon(normalizedProgress, progressColor)}
                 />
             )}
