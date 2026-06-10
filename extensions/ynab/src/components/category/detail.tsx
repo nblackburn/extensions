@@ -16,6 +16,7 @@ interface CategoryDetailProps {
     targetFormatted?: string | null;
     overallFormatted?: string | null;
     targetDate?: string | null;
+    balanceFormatted?: string | null;
 }
 
 export const CategoryDetail = ({
@@ -31,6 +32,7 @@ export const CategoryDetail = ({
     targetFormatted,
     overallFormatted,
     targetDate,
+    balanceFormatted,
 }: CategoryDetailProps) => {
     const hasGoal = useMemo(() => !!goalType, [goalType]);
 
@@ -73,6 +75,7 @@ export const CategoryDetail = ({
                                 overallFormatted={overallFormatted}
                                 targetDate={targetDate}
                                 percentageComplete={percentageComplete}
+                                balanceFormatted={balanceFormatted}
                             />
                         </Fragment>
                     )}

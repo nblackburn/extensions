@@ -9,6 +9,7 @@ interface CategoryDetailGoalNeedProps {
     targetFormatted?: string | null;
     overallFormatted?: string | null;
     percentageComplete?: number | null;
+    balanceFormatted?: string | null;
 }
 
 interface CategoryDetailGoalProps extends CategoryDetailGoalNeedProps {
@@ -18,8 +19,8 @@ interface CategoryDetailGoalProps extends CategoryDetailGoalNeedProps {
 export const CategoryGoalNeed = ({
     targetDate,
     targetFormatted,
-    overallFormatted,
     percentageComplete,
+    balanceFormatted,
 }: CategoryDetailGoalNeedProps) => {
     const normalizedProgress = useMemo(() => {
         if (!percentageComplete) {
@@ -49,10 +50,10 @@ export const CategoryGoalNeed = ({
                     text={`Have a Balance of ${targetFormatted}`}
                 />
             )}
-            {overallFormatted && targetFormatted && (
+            {balanceFormatted && targetFormatted && (
                 <List.Item.Detail.Metadata.Label
                     title="Balance"
-                    text={`${overallFormatted} of ${targetFormatted}`}
+                    text={`${balanceFormatted} of ${targetFormatted}`}
                     icon={getProgressIcon(normalizedProgress, progressColor)}
                 />
             )}
@@ -72,6 +73,7 @@ export const CategoryDetailGoal = ({
     targetFormatted,
     percentageComplete,
     targetDate,
+    balanceFormatted,
 }: CategoryDetailGoalProps) => {
     if (!type) {
         return null;
@@ -83,6 +85,7 @@ export const CategoryDetailGoal = ({
             targetFormatted={targetFormatted}
             overallFormatted={overallFormatted}
             percentageComplete={percentageComplete}
+            balanceFormatted={balanceFormatted}
         />
     );
 };

@@ -49,6 +49,7 @@ const Command = () => {
                             }
                             onSelect={() => handleSelect(category.id)}
                             isShowingDetail={isShowingDetail}
+                            balanceFormatted={category.balance_formatted}
                             targetFormatted={category.goal_target_formatted}
                             overallFormatted={
                                 category.goal_overall_funded_formatted

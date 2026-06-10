@@ -26,6 +26,7 @@ interface CategoryProps {
     targetFormatted?: string | null;
     overallFormatted?: string | null;
     targetDate?: string | null;
+    balanceFormatted?: string | null;
 }
 
 export const Category = ({
@@ -47,6 +48,7 @@ export const Category = ({
     targetFormatted,
     overallFormatted,
     targetDate,
+    balanceFormatted,
 }: CategoryProps) => {
     const normalizedProgress = useMemo(() => {
         if (!percentageComplete) {
@@ -190,6 +192,7 @@ export const Category = ({
                     overallFormatted={overallFormatted}
                     targetFormatted={targetFormatted}
                     targetDate={targetDate}
+                    balanceFormatted={balanceFormatted}
                 />
             }
             accessories={accessories}
