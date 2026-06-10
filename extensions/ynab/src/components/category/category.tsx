@@ -120,7 +120,7 @@ export const Category = ({
     }, [percentageComplete, available, hasOverspent, isUnderfunded]);
 
     const availableIcon = useMemo(() => {
-        if (!hasGoal) {
+        if (!hasGoal || hasOverspent) {
             return null;
         }
 
