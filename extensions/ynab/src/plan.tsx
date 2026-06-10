@@ -47,7 +47,7 @@ const Command = () => {
                             underfundedFormatted={
                                 category.goal_under_funded_formatted
                             }
-                            onSelect={() => handleSelect(category.id)}
+                            onSelect={handleSelect}
                             isShowingDetail={isShowingDetail}
                             balanceFormatted={category.balance_formatted}
                             targetFormatted={category.goal_target_formatted}
