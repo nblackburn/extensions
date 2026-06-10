@@ -13,12 +13,9 @@ export const CategoryActions = ({
     onSelect,
     isShowingDetail,
 }: CategoryActionsProps) => {
-    const showDetailLabel = useMemo(
-        () => {
-            return isShowingDetail ? "Hide Details" : "Show Details"
-        },
-        [isShowingDetail],
-    );
+    const showDetailLabel = useMemo(() => {
+        return isShowingDetail ? "Hide Details" : "Show Details";
+    }, [isShowingDetail]);
 
     return (
         <ActionPanel title={title}>
