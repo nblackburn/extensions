@@ -6,7 +6,10 @@ import { Fragment, useMemo } from "react";
 interface CategoryDetailProps {
     title: string;
     note?: string | null;
+    assigned?: number | null;
     assignedFormatted?: string;
+    activity?: number | null;
+    available?: number | null;
     activityFormatted?: string;
     availableFormatted?: string;
     availableIcon?: string | null;
@@ -25,8 +28,11 @@ interface CategoryDetailProps {
 export const CategoryDetail = ({
     title,
     note,
+    assigned,
     assignedFormatted,
+    activity,
     activityFormatted,
+    available,
     availableFormatted,
     availableIcon,
     availableTagColor,
@@ -78,7 +84,12 @@ export const CategoryDetail = ({
                             <CategoryDetailGoal
                                 type={goalType}
                                 target={target}
+                                assigned={assigned}
                                 assignedFormatted={assignedFormatted}
+                                activity={activity}
+                                activityFormatted={assignedFormatted}
+                                available={available}
+                                availableFormatted={availableFormatted}
                                 targetFormatted={targetFormatted}
                                 overall={overall}
                                 overallFormatted={overallFormatted}

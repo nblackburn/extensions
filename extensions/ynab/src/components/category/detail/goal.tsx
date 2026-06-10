@@ -7,6 +7,10 @@ import { format } from "date-fns";
 interface CategoryDetailGoalNeedProps {
     assigned?: number | null;
     assignedFormatted?: string;
+    activity?: number | null;
+    activityFormatted?: string;
+    available?: number | null;
+    availableFormatted?: string;
     targetDate?: string | null;
     target?: number | null;
     targetFormatted?: string | null;

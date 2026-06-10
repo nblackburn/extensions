@@ -188,8 +188,11 @@ export const Category = ({
                 <CategoryDetail
                     title={title}
                     note={note}
+                    assigned={assigned}
                     assignedFormatted={assignedFormatted}
+                    activity={activity}
                     activityFormatted={activityFormatted}
+                    available={available}
                     availableFormatted={availableFormatted}
                     availableIcon={availableIcon}
                     availableTagColor={availableTagColor}
