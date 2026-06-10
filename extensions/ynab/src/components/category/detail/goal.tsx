@@ -30,7 +30,6 @@ export const CategoryGoalNeed = ({
     targetFormatted,
     assignedFormatted,
     percentageComplete,
-    balanceFormatted,
 }: CategoryDetailGoalNeedProps) => {
     const normalizedProgress = useMemo(() => {
         if (!percentageComplete) {
