@@ -78,6 +78,7 @@ export const CategoryDetail = ({
                             <CategoryDetailGoal
                                 type={goalType}
                                 target={target}
+                                assignedFormatted={assignedFormatted}
                                 targetFormatted={targetFormatted}
                                 overall={overall}
                                 overallFormatted={overallFormatted}

@@ -5,6 +5,8 @@ import { GoalType } from "~/types";
 import { format } from "date-fns";
 
 interface CategoryDetailGoalNeedProps {
+    assigned?: number | null;
+    assignedFormatted?: string;
     targetDate?: string | null;
     target?: number | null;
     targetFormatted?: string | null;
@@ -22,6 +24,7 @@ interface CategoryDetailGoalProps extends CategoryDetailGoalNeedProps {
 export const CategoryGoalNeed = ({
     targetDate,
     targetFormatted,
+    assignedFormatted,
     percentageComplete,
     balanceFormatted,
 }: CategoryDetailGoalNeedProps) => {
@@ -53,10 +56,10 @@ export const CategoryGoalNeed = ({
                     text={`Have a Balance of ${targetFormatted}`}
                 />
             )}
-            {balanceFormatted && targetFormatted && (
+            {assignedFormatted && targetFormatted && (
                 <List.Item.Detail.Metadata.Label
                     title="Balance"
-                    text={`${balanceFormatted} of ${targetFormatted}`}
+                    text={`${assignedFormatted} of ${targetFormatted}`}
                     icon={getProgressIcon(normalizedProgress, progressColor)}
                 />
             )}
@@ -76,6 +79,7 @@ export const CategoryDetailGoal = ({
     overallFormatted,
     target,
     targetFormatted,
+    assignedFormatted,
     percentageComplete,
     targetDate,
     balance,
@@ -95,6 +99,7 @@ export const CategoryDetailGoal = ({
             percentageComplete={percentageComplete}
             balance={balance}
             balanceFormatted={balanceFormatted}
+            assignedFormatted={assignedFormatted}
         />
     );
 };
