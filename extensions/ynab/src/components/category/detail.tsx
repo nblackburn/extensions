@@ -40,7 +40,7 @@ export const CategoryDetail = ({
     balance,
     balanceFormatted,
 }: CategoryDetailProps) => {
-    const hasGoal = useMemo(() => !!goalType, [goalType]);
+    const hasGoal = useMemo(() => !!goalType && !!target, [goalType, target]);
 
     return (
         <List.Item.Detail
