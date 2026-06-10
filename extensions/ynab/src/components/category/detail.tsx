@@ -13,9 +13,12 @@ interface CategoryDetailProps {
     availableTagColor?: string | null;
     goalType?: GoalType;
     percentageComplete?: number | null;
+    target?: number | null;
     targetFormatted?: string | null;
+    overall?: number | null;
     overallFormatted?: string | null;
     targetDate?: string | null;
+    balance?: number | null;
     balanceFormatted?: string | null;
 }
 
@@ -29,9 +32,12 @@ export const CategoryDetail = ({
     availableTagColor,
     goalType,
     percentageComplete,
+    target,
     targetFormatted,
+    overall,
     overallFormatted,
     targetDate,
+    balance,
     balanceFormatted,
 }: CategoryDetailProps) => {
     const hasGoal = useMemo(() => !!goalType, [goalType]);
@@ -71,10 +77,13 @@ export const CategoryDetail = ({
                             <List.Item.Detail.Metadata.Separator />
                             <CategoryDetailGoal
                                 type={goalType}
+                                target={target}
                                 targetFormatted={targetFormatted}
+                                overall={overall}
                                 overallFormatted={overallFormatted}
                                 targetDate={targetDate}
                                 percentageComplete={percentageComplete}
+                                balance={balance}
                                 balanceFormatted={balanceFormatted}
                             />
                         </Fragment>

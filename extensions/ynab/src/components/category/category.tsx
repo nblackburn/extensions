@@ -23,9 +23,12 @@ interface CategoryProps {
     underfundedFormatted?: string | null;
     onSelect?: () => void;
     isShowingDetail?: boolean;
+    target?: number | null;
     targetFormatted?: string | null;
+    overall?: number | null;
     overallFormatted?: string | null;
     targetDate?: string | null;
+    balance?: number | null;
     balanceFormatted?: string | null;
 }
 
@@ -45,9 +48,12 @@ export const Category = ({
     underfunded,
     onSelect,
     isShowingDetail,
+    target,
     targetFormatted,
+    overall,
     overallFormatted,
     targetDate,
+    balance,
     balanceFormatted,
 }: CategoryProps) => {
     const normalizedProgress = useMemo(() => {
@@ -189,9 +195,12 @@ export const Category = ({
                     availableTagColor={availableTagColor}
                     goalType={goalType}
                     percentageComplete={percentageComplete}
+                    overall={overall}
                     overallFormatted={overallFormatted}
+                    target={target}
                     targetFormatted={targetFormatted}
                     targetDate={targetDate}
+                    balance={balance}
                     balanceFormatted={balanceFormatted}
                 />
             }

@@ -6,9 +6,12 @@ import { format } from "date-fns";
 
 interface CategoryDetailGoalNeedProps {
     targetDate?: string | null;
+    target?: number | null;
     targetFormatted?: string | null;
+    overall?: number | null;
     overallFormatted?: string | null;
     percentageComplete?: number | null;
+    balance?: number | null;
     balanceFormatted?: string | null;
 }
 
@@ -69,10 +72,13 @@ export const CategoryGoalNeed = ({
 
 export const CategoryDetailGoal = ({
     type,
+    overall,
     overallFormatted,
+    target,
     targetFormatted,
     percentageComplete,
     targetDate,
+    balance,
     balanceFormatted,
 }: CategoryDetailGoalProps) => {
     if (!type) {
@@ -82,9 +88,12 @@ export const CategoryDetailGoal = ({
     return (
         <CategoryGoalNeed
             targetDate={targetDate}
+            target={target}
             targetFormatted={targetFormatted}
+            overall={overall}
             overallFormatted={overallFormatted}
             percentageComplete={percentageComplete}
+            balance={balance}
             balanceFormatted={balanceFormatted}
         />
     );
